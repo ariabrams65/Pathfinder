@@ -10,25 +10,29 @@ import java.util.List;
 public class AStarPathFinder {
     
     private AStarGraph graph;
+    private Node start;
+    private Node end;
     
-    public AStarPathFinder(AStarGraph graph) {
+    public AStarPathFinder(AStarGraph graph, Node start, Node end) {
         this.graph = graph;
+        this.start = start;
+        this.end = end;
     }
     
     public List<Node> getPath() {
         List<Node> open = new ArrayList<Node>();
         List<Node> closed = new ArrayList<Node>();
         
-        graph.getStart().setG(0);
-        graph.getStart().setF(0);
-        open.add(graph.getStart());
+        start.setG(0);
+        start.setF(0);
+        open.add(start);
         
         while(true) {
             Node current = lowestF(open);
             open.remove(current);
             closed.add(current);
             
-            if (current.equals(graph.getEnd())) {
+            if (current.equals(end)) {
                 break;
             }
             for (Node node : graph.neighbores(current)) {
@@ -39,7 +43,7 @@ public class AStarPathFinder {
                 int newG = current.getG() + graph.getEdgeWeight(current, node);
                 
                 if (newG < node.getG() || !open.contains(node)) {
-                    node.setF(newG + distance(node, graph.getEnd()));
+                    node.setF(newG + distance(node, end));
                     node.setG(newG);
                     
                     node.setParent(current);
@@ -70,10 +74,10 @@ public class AStarPathFinder {
 
     private List<Node> backtrace() {
        List<Node> path = new ArrayList<Node>();
-       Node current = graph.getEnd();
+       Node current = end;
        path.add(current);
        
-       while(current != graph.getStart()) {
+       while(current != start) {
            current = current.getParent();
            path.add(current);        
        }

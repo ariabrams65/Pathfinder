@@ -11,13 +11,9 @@ public class AStarGraph {
     private Map<Node, List<Node>> adjList;
     private List<Edge> edges;
 
-    private Node start, end;
-
-    public AStarGraph(Node start, Node end) {
+    public AStarGraph() {
         this.adjList = new HashMap<Node, List<Node>>();
         this.edges = new ArrayList<Edge>();
-        this.start = start;
-        this.end = end;
     }
 
     public void addEdge(Node v, Node u, int weight) {
@@ -48,13 +44,5 @@ public class AStarGraph {
             }
         }
         throw new IllegalArgumentException();
-    }
-    
-    public Node getStart() {
-        return this.start;
-    }
-    
-    public Node getEnd() {
-        return this.end;
     }
 }

@@ -25,7 +25,7 @@ public class Main {
         nodes.add(new Node(30, 30, "11"));
         nodes.add(new Node(0, 20, "12"));
         
-        AStarGraph graph = new AStarGraph(nodes.get(0), nodes.get(10));
+        AStarGraph graph = new AStarGraph();
 
         graph.addEdge(nodes.get(0), nodes.get(4), 10);
         graph.addEdge(nodes.get(0), nodes.get(5), 14);
@@ -47,7 +47,7 @@ public class Main {
         graph.addEdge(nodes.get(12), nodes.get(9), 14);
         graph.addEdge(nodes.get(4), nodes.get(5), 10);
 
-        AStarPathFinder alg = new AStarPathFinder(graph);
+        AStarPathFinder alg = new AStarPathFinder(graph, nodes.get(5), nodes.get(11));
         for (Node n : alg.getPath()) {
             System.out.println(n);
             }
