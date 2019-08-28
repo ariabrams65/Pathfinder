@@ -25,7 +25,6 @@ public class AStarPathFinder {
         
         while(true) {
             Node current = lowestF(open);
-            System.out.println(current + " " + graph.getEnd());
             open.remove(current);
             closed.add(current);
             
@@ -72,13 +71,11 @@ public class AStarPathFinder {
     private List<Node> backtrace() {
        List<Node> path = new ArrayList<Node>();
        Node current = graph.getEnd();
+       path.add(current);
        
-       while(true) {
-           path.add(current);
+       while(current != graph.getStart()) {
            current = current.getParent();
-           if (current == graph.getStart()) {
-               break;
-           }
+           path.add(current);        
        }
        Collections.reverse(path);
        return path;
