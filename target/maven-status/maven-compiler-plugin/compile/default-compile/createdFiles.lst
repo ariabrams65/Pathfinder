@@ -1,0 +1,5 @@
+AStar\AStarPathFinder.class
+AStarGraph\Node.class
+Main.class
+AStarGraph\Edge.class
+AStarGraph\AStarGraph.class
